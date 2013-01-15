@@ -148,15 +148,15 @@ describe "User pages" do
   describe "signup page" do
     before { visit signup_path }
 
-    it { should have_selector('h1',    text: 'Sign up') }
-    it { should have_selector('title', text: full_title('Sign up')) }
+    it { should have_selector('h1',    text: 'Inscription') }
+    it { should have_selector('title', text: full_title('Inscription')) }
   end
 
   describe "signup" do
 
     before { visit signup_path }
 
-    let(:submit) { "Create my account" }
+    let(:submit) { "Valider" }
 
     describe "with invalid information" do
       it "should not create a user" do
@@ -166,16 +166,16 @@ describe "User pages" do
       describe "error messages" do
         before { click_button submit }
 
-        it { should have_selector('title', text: 'Sign up') }
+        it { should have_selector('title', text: "Inscription") }
         it { should have_content('error') }
       end
     end
 
     describe "with valid information" do
       before do
-        fill_in "Name",         with: "Example User"
+        fill_in "Nom",         with: "Example User"
         fill_in "Email",        with: "user@example.com"
-        fill_in "Password",     with: "foobar"
+        fill_in "Mot de passe",     with: "foobar"
         fill_in "Confirmation", with: "foobar"
       end
 
@@ -190,7 +190,7 @@ describe "User pages" do
 
         it { should have_selector('title', text: user.name) }
         it { should have_selector('div.alert.alert-success', text: 'Welcome') }
-        it { should have_link('Sign out') }
+        it { should have_link('Se deconnecter') }
       end
     end
   end
@@ -227,7 +227,7 @@ describe "User pages" do
 
       it { should have_selector('title', text: new_name) }
       it { should have_selector('div.alert.alert-success') }
-      it { should have_link('Sign out', href: signout_path) }
+      it { should have_link('Se deconnecter', href: signout_path) }
       specify { user.reload.name.should  == new_name }
       specify { user.reload.email.should == new_email }
     end

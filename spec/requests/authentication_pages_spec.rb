@@ -18,7 +18,7 @@ describe "Authentication" do
       before { click_button "S'identifier" }
 
       it { should have_selector('title', text: 'Sign in') }
-      it { should have_selector('div.alert.alert-error', text: 'Invalid') }
+      it { should have_selector('div.alert.alert-error', text: 'Combinaison mot de passe / nom invalide !') }
 
       describe "after visiting another page" do
         before { click_link "Accueil" }

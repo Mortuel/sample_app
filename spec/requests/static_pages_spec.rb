@@ -39,6 +39,13 @@ describe "Static pages" do
     end
   end
 
+  describe "Help page" do
+    before { visit help_path }
+
+    it { should have_selector('h1',    text: 'Help') }
+    it { should have_selector('title', text: full_title('Help')) }
+  end
+
   describe "About page" do
     before { visit about_path }
 
@@ -55,6 +62,8 @@ describe "Static pages" do
 
   it "should have the right links on the layout" do
     visit root_path
+    click_link "Aide"
+    page.should have_selector 'title', text: full_title('Help')
     click_link "Accueil"
     click_link "S'inscrire"
     page.should have_selector 'title', text: full_title('Inscription')

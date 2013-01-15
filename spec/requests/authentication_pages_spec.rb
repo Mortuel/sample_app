@@ -7,7 +7,7 @@ describe "Authentication" do
   describe "signin page" do
     before { visit signin_path }
 
-    it { should have_selector('h1',    text: 'Identification') }
+    it { should have_selector('h1',    text: 'Sign in') }
     it { should have_selector('title', text: 'Sign in') }
   end
 
@@ -15,7 +15,7 @@ describe "Authentication" do
     before { visit signin_path }
 
     describe "with invalid information" do
-      before { click_button "S'identifier" }
+      before { click_button "Sign in" }
 
       it { should have_selector('title', text: 'Sign in') }
       it { should have_selector('div.alert.alert-error', text: 'Invalid') }
@@ -30,8 +30,8 @@ describe "Authentication" do
       let(:user) { FactoryGirl.create(:user) }
       before do
         fill_in "Email",    with: user.email
-        fill_in "Mot de passe", with: user.password
-        click_button "S'identifier"
+        fill_in "Password", with: user.password
+        click_button "Sign in"
       end
 
       it { should have_selector('title', text: user.name) }
@@ -58,8 +58,8 @@ describe "Authentication" do
         before do
           visit edit_user_path(user)
           fill_in "Email",    with: user.email
-          fill_in "Mot de passe", with: user.password
-          click_button "S'identifier"
+          fill_in "Password", with: user.password
+          click_button "Sign in"
         end
 
         describe "after signing in" do
@@ -73,8 +73,8 @@ describe "Authentication" do
               delete signout_path
               visit signin_path
               fill_in "Email",    with: user.email
-              fill_in "Mot de passe", with: user.password
-              click_button "S'identifier"
+              fill_in "Password", with: user.password
+              click_button "Sign in"
             end
 
             it "should render the default (profile) page" do
